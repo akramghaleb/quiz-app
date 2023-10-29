@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/home_page.dart';
-import 'package:quiz_app/questions.dart';
+import 'package:quiz_app/questions_page.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -14,7 +14,6 @@ class _QuizState extends State<Quiz> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     activeScreen = HomePage(changeScreen);
   }
