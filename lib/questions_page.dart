@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/widgets/answer_button.dart';
 
 class Questions extends StatelessWidget {
   const Questions({super.key});
@@ -16,30 +17,24 @@ class Questions extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          ElevatedButton(
-              onPressed: () {},
-              child: const Text(
-                'Answer 1',
-                style: TextStyle(color: Colors.white),
-              )),
+          AnswerButton(
+            text: 'Answer 1',
+            onPressed: () {},
+          ),
           const SizedBox(
             height: 10,
           ),
-          ElevatedButton(
-              onPressed: () {},
-              child: const Text(
-                'Answer 2',
-                style: TextStyle(color: Colors.white),
-              )),
+          AnswerButton(
+            text: 'Answer 2',
+            onPressed: () {},
+          ),
           const SizedBox(
             height: 10,
           ),
-          ElevatedButton(
-              onPressed: () {},
-              child: const Text(
-                'Answer 3',
-                style: TextStyle(color: Colors.white),
-              ))
+          AnswerButton(
+            text: 'Answer 3',
+            onPressed: () {},
+          ),
         ],
       ),
     );
