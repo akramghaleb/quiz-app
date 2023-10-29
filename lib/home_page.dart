@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage(this.changeScreen, {super.key});
+
+  Function changeScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class HomePage extends StatelessWidget {
             height: 50,
           ),
           OutlinedButton.icon(
-              onPressed: () {},
+              onPressed: () => changeScreen(),
               icon: const Icon(Icons.arrow_right, color: Colors.white),
               label: const Text(
                 'Start now !',

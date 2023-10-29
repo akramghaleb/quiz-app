@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/home_page.dart';
+import 'package:quiz_app/questions.dart';
 
-class Quiz extends StatelessWidget {
+class Quiz extends StatefulWidget {
   const Quiz({super.key});
+
+  @override
+  State<Quiz> createState() => _QuizState();
+}
+
+class _QuizState extends State<Quiz> {
+  Widget? activeScreen;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    activeScreen = HomePage(changeScreen);
+  }
+
+  void changeScreen() {
+    setState(() {
+      activeScreen = const Questions();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +33,7 @@ class Quiz extends StatelessWidget {
             decoration: const BoxDecoration(
                 gradient: LinearGradient(
                     colors: [Colors.deepPurpleAccent, Colors.purple])),
-            child: const HomePage()),
+            child: activeScreen),
       ),
     );
   }
