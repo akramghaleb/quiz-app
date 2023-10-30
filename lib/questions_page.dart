@@ -10,31 +10,38 @@ class Questions extends StatefulWidget {
 }
 
 class _QuestionsState extends State<Questions> {
-  var currentQuestions = questions[0];
+  var currentQuestions = questions[2];
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            currentQuestions.question,
-            style: const TextStyle(color: Colors.white),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          ...currentQuestions.answers.map((e) {
-            return Container(
-              margin: const EdgeInsets.all(5),
-              child: AnswerButton(
-                text: e,
-                onPressed: () {},
+    return Container(
+      margin: const EdgeInsets.all(20),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              currentQuestions.question,
+              style: const TextStyle(
+                color: Colors.white,
               ),
-            );
-          }),
-        ],
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ...currentQuestions.getShuffledAnswers().map((e) {
+              return Container(
+                margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                child: AnswerButton(
+                  text: e,
+                  onPressed: () {},
+                ),
+              );
+            }),
+          ],
+        ),
       ),
     );
   }
