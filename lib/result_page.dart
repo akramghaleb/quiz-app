@@ -53,13 +53,41 @@ class _ResultPageState extends State<ResultPage> {
               height: 10,
             ),
             ...getResults().map(
-              (e) => Text(
-                e.toString(),
-                style: GoogleFonts.lato(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-                textAlign: TextAlign.center,
+              (e) => Column(
+                children: [
+                  Text(
+                    e['index'].toString(),
+                    style: GoogleFonts.lato(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    e['question'].toString(),
+                    style: GoogleFonts.lato(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    e['correct_answer'].toString(),
+                    style: GoogleFonts.lato(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    e['answer'].toString(),
+                    style: GoogleFonts.lato(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
             const SizedBox(
