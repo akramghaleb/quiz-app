@@ -4,17 +4,27 @@ import 'package:quiz_app/widgets/answer_button.dart';
 import 'package:quiz_app/data/questions.dart';
 
 class Questions extends StatefulWidget {
-  const Questions({super.key});
+  const Questions(this.onChooseAnswers, {super.key});
+
+  final void Function(String) onChooseAnswers;
 
   @override
   State<Questions> createState() => _QuestionsState();
 }
 
 class _QuestionsState extends State<Questions> {
-  var currentQuestions = questions[2];
+  var currentQuestionsIndex = 0;
+
+  void changeQuestion(String answer) {
+    widget.onChooseAnswers(answer);
+    setState(() {
+      currentQuestionsIndex++;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final currentQuestions = questions[currentQuestionsIndex];
     return Container(
       margin: const EdgeInsets.all(20),
       child: Center(
@@ -39,7 +49,7 @@ class _QuestionsState extends State<Questions> {
                 margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 child: AnswerButton(
                   text: e,
-                  onPressed: () {},
+                  onPressed: () => changeQuestion(e),
                 ),
               );
             }),
