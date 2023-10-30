@@ -4,6 +4,8 @@ import 'package:quiz_app/home_page.dart';
 import 'package:quiz_app/questions_page.dart';
 import 'dart:developer';
 
+import 'package:quiz_app/result_page.dart';
+
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
 
@@ -26,9 +28,9 @@ class _QuizState extends State<Quiz> {
     chosenAnswers.add(answer);
     if (chosenAnswers.length == questions.length) {
       setState(() {
-        activeScreen = HomePage(changeScreen);
+        activeScreen = ResultPage(chosenAnswers);
       });
-      log(chosenAnswers.toString());
+      //log(chosenAnswers.toString());
       chosenAnswers = [];
     }
   }
