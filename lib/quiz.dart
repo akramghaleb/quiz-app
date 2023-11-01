@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/home_page.dart';
 import 'package:quiz_app/questions_page.dart';
-import 'dart:developer';
 
 import 'package:quiz_app/result_page.dart';
 
@@ -28,16 +27,21 @@ class _QuizState extends State<Quiz> {
     chosenAnswers.add(answer);
     if (chosenAnswers.length == questions.length) {
       setState(() {
-        activeScreen = ResultPage(chosenAnswers);
+        activeScreen = ResultPage(chosenAnswers, restart);
       });
-      //log(chosenAnswers.toString());
-      chosenAnswers = [];
     }
   }
 
   void changeScreen() {
     setState(() {
       activeScreen = Questions(onChooseAnswers);
+    });
+  }
+
+  void restart() {
+    setState(() {
+      chosenAnswers = [];
+      activeScreen = HomePage(changeScreen);
     });
   }
 

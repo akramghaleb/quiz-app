@@ -7,16 +7,18 @@ import 'package:quiz_app/summary.dart';
 import 'package:quiz_app/widgets/answer_button.dart';
 
 class ResultPage extends StatefulWidget {
-  const ResultPage(this.chosenAnswers, {super.key});
+  const ResultPage(this.chosenAnswers, this.restart, {super.key});
 
   final List<String> chosenAnswers;
+
+  final void Function() restart;
 
   @override
   State<ResultPage> createState() => _ResultPageState();
 }
 
 class _ResultPageState extends State<ResultPage> {
-  List<Map<String, Object>> getResults() {
+  List<Map<String, Object>> get allResult {
     final List<Map<String, Object>> results = [];
 
     var i = 0;
@@ -34,7 +36,6 @@ class _ResultPageState extends State<ResultPage> {
 
   @override
   Widget build(BuildContext context) {
-    final allResult = getResults();
     int correctAnswer = allResult
         .where((element) =>
             element['correct_answer'].toString() ==
@@ -64,14 +65,17 @@ class _ResultPageState extends State<ResultPage> {
             const SizedBox(
               height: 10,
             ),
-            OutlinedButton.icon(
-                onPressed: () {},
-                icon:
-                    const Icon(Icons.restart_alt_outlined, color: Colors.white),
-                label: const Text(
-                  'Return to main screen',
-                  style: TextStyle(color: Colors.white),
-                )),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 80, vertical: 0),
+              child: OutlinedButton.icon(
+                  onPressed: widget.restart,
+                  icon: const Icon(Icons.restart_alt_outlined,
+                      color: Colors.white),
+                  label: const Text(
+                    'Return to main screen',
+                    style: TextStyle(color: Colors.white),
+                  )),
+            ),
           ],
         ),
       ),
