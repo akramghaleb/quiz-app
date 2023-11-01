@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/data/questions.dart';
+import 'package:quiz_app/summary.dart';
 import 'package:quiz_app/widgets/answer_button.dart';
 
 class ResultPage extends StatefulWidget {
@@ -66,71 +67,18 @@ class _ResultPageState extends State<ResultPage> {
             const SizedBox(
               height: 10,
             ),
-            ...getResults().map(
-              (e) => Column(
-                children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 16,
-                        backgroundColor: e['correct_answer'].toString() ==
-                                e['answer'].toString()
-                            ? Colors.green
-                            : Colors.red[300],
-                        child: Text(
-                          ((e['index'] as int) + 1).toString(),
-                          style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            e['question'].toString(),
-                            style: GoogleFonts.lato(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(
-                            e['correct_answer'].toString(),
-                            style: GoogleFonts.lato(
-                              color: Color.fromARGB(139, 255, 255, 255),
-                              fontSize: 16,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(
-                            e['answer'].toString(),
-                            style: GoogleFonts.lato(
-                              color: Color.fromARGB(255, 0, 4, 255),
-                              fontSize: 16,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            Summary(getResults()),
             const SizedBox(
               height: 10,
             ),
-            AnswerButton(
-              text: 'Return to main screen',
-              onPressed: () {},
-            ),
+            OutlinedButton.icon(
+                onPressed: () {},
+                icon:
+                    const Icon(Icons.restart_alt_outlined, color: Colors.white),
+                label: const Text(
+                  'Return to main screen',
+                  style: TextStyle(color: Colors.white),
+                )),
           ],
         ),
       ),
