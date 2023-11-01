@@ -35,7 +35,7 @@ class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) {
     final allResult = getResults();
-    var correctAnswer = allResult
+    int correctAnswer = allResult
         .where((element) =>
             element['correct_answer'].toString() ==
             element['answer'].toString())
