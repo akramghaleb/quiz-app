@@ -16,20 +16,6 @@ class ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<ResultPage> {
-  int correct = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    for (int i = 0; i < widget.chosenAnswers.length; i++) {
-      if (questions[i].answers[0] == widget.chosenAnswers[i]) {
-        setState(() {
-          correct += 1;
-        });
-      }
-    }
-  }
-
   List<Map<String, Object>> getResults() {
     final List<Map<String, Object>> results = [];
 
@@ -48,6 +34,13 @@ class _ResultPageState extends State<ResultPage> {
 
   @override
   Widget build(BuildContext context) {
+    final allResult = getResults();
+    var correctAnswer = allResult
+        .where((element) =>
+            element['correct_answer'].toString() ==
+            element['answer'].toString())
+        .length;
+
     return Container(
       margin: const EdgeInsets.all(20),
       child: Center(
@@ -56,7 +49,7 @@ class _ResultPageState extends State<ResultPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Your answers $correct out of 6 correct answers',
+              'Your answers $correctAnswer out of ${questions.length} correct answers',
               style: GoogleFonts.lato(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -67,7 +60,7 @@ class _ResultPageState extends State<ResultPage> {
             const SizedBox(
               height: 10,
             ),
-            Summary(getResults()),
+            Summary(allResult),
             const SizedBox(
               height: 10,
             ),
