@@ -15,6 +15,20 @@ class ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<ResultPage> {
+  int correct = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    for (int i = 0; i < widget.chosenAnswers.length; i++) {
+      if (questions[i].answers[0] == widget.chosenAnswers[i]) {
+        setState(() {
+          correct += 1;
+        });
+      }
+    }
+  }
+
   List<Map<String, Object>> getResults() {
     final List<Map<String, Object>> results = [];
 
@@ -41,7 +55,7 @@ class _ResultPageState extends State<ResultPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Your answers 3 out of 6 correct answers',
+              'Your answers $correct out of 6 correct answers',
               style: GoogleFonts.lato(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -55,37 +69,57 @@ class _ResultPageState extends State<ResultPage> {
             ...getResults().map(
               (e) => Column(
                 children: [
-                  Text(
-                    e['index'].toString(),
-                    style: GoogleFonts.lato(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    e['question'].toString(),
-                    style: GoogleFonts.lato(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    e['correct_answer'].toString(),
-                    style: GoogleFonts.lato(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    e['answer'].toString(),
-                    style: GoogleFonts.lato(
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                    textAlign: TextAlign.center,
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 16,
+                        backgroundColor: e['correct_answer'].toString() ==
+                                e['answer'].toString()
+                            ? Colors.green
+                            : Colors.red[300],
+                        child: Text(
+                          ((e['index'] as int) + 1).toString(),
+                          style: GoogleFonts.lato(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            e['question'].toString(),
+                            style: GoogleFonts.lato(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            e['correct_answer'].toString(),
+                            style: GoogleFonts.lato(
+                              color: Color.fromARGB(139, 255, 255, 255),
+                              fontSize: 16,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            e['answer'].toString(),
+                            style: GoogleFonts.lato(
+                              color: Color.fromARGB(255, 0, 4, 255),
+                              fontSize: 16,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
