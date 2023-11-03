@@ -1,6 +1,6 @@
 # quiz_app
 
-A new Flutter project.ccccccccccccccccccccccc
+A new Flutter project.
 
 ## Getting Started
 
