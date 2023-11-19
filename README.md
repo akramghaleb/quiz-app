@@ -2,6 +2,11 @@
 
 A new Flutter project.
 
+| Screenshot | Screenshot | Screenshot |
+| --- | --- | ---|
+| ![image](scs/1.png) | ![image](scs/2.png) | ![image](scs/3.png) |
+| ![image](scs/4.png) | ![image](scs/5.png) | ![image](scs/7.png) |
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
